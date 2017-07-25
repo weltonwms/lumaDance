@@ -25,6 +25,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function()
 {
    Route::resource('alunos', 'AlunosController');
+   Route::get('teachers/payments', 'PaymentsController@index')->name("payments.index");
+   Route::put('teachers/payments/{teacherPayment}', 'PaymentsController@quitar')->name("payments.quitar");
+   Route::resource('teachers', 'TeachersController');
+   Route::get('turmas/grade', 'TurmasController@showGrade')->name("turmas.grade");
+   Route::resource('turmas', 'TurmasController');
+   
+   Route::put('contratos/{contrato}/desativar','ContratosController@desativar')->name('contratos.desativar');
+   Route::resource('contratos', 'ContratosController');
+   Route::post('mensalidades','MensalidadesController@store')->name('mensalidades.store');
+   Route::put('mensalidades/{mensalidade}','MensalidadesController@update')->name('mensalidades.update');
+   Route::put('mensalidades/desquitar/{mensalidade}','MensalidadesController@desquitar')->name('mensalidades.desquitar');
+   Route::delete('mensalidades/{mensalidade}','MensalidadesController@destroy')->name('mensalidades.destroy');
+   Route::post('mensalidades/quitar','MensalidadesController@quitar')->name('mensalidades.quitar');
+   
 });
+
+
 
 

@@ -9,6 +9,11 @@ class Aluno extends Model
 {
     protected $fillable=['nome','email','telefone','nascimento','endereco'];
     protected $dates = array('nascimento');
+    
+    public function contratos()
+     {
+         return $this->hasMany("App\Contrato");
+     }
    
     public function getNascimentoAttribute($value)
     {

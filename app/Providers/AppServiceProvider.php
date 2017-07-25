@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Contrato;
+use App\Mensalidade;
+use App\Observers\ContratoObserver;
+use App\Observers\MensalidadeObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,20 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Html::macro('formGroup', function ($field, $label, $errors,$classes='') {
-            $class_erro = $errors->has($field) ? 'has-error' : '';
-            $classes.= " form-control";
-            $string = "<div class=\"form-group $class_erro \">";
-            $string .= \Form::label($field, $label, ['class' => 'control-label']);
-            $string .= \Form::text($field, null, ['class' => $classes]);
-            if ($class_erro):
-                $string .= "<span class='help-block'><strong>{$errors->first($field)}</strong></span>";
-            endif;
-
-            $string .= "</div>";
-
-            return $string;
-        });
+        
+        require base_path('resources/macros/macros.php');
+        Contrato::observe(ContratoObserver::class);
+        Mensalidade::observe(MensalidadeObserver::class);
     }
 
     /**

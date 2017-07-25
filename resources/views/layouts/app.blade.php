@@ -12,16 +12,24 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Styles -->
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+         <link href="{{ asset('plugins/chosen/chosen.css') }}" rel="stylesheet">
+<!--          <link href="{{ asset('plugins/chosen/chosen-bootstrap.css') }}" rel="stylesheet">-->
+          <link href="{{ asset('plugins/datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+       
         <!-- Scripts -->
         <script> var laravel_token = '{{ csrf_token() }}';</script>
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('js/datatables.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.mask.js') }}"></script>
-        <script src="{{ asset('js/jquery.confirm.js') }}"></script>
+        <script src="{{ asset('plugins/jquery.min.js') }}"></script>
+<!--         <script src="{{ asset('plugins/moderniz.js') }}"></script>-->
+        <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('plugins/datatables/datatables.min.js') }}"></script>
+         <script src="{{ asset('plugins/jquery.mask.js') }}"></script>
+        <script src="{{ asset('plugins/chosen/chosen.jquery.js') }}"></script>
+        <script src="{{ asset('plugins/jquery.confirm.js') }}"></script>
+        <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.min.js') }}"></script>
+        <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.pt-BR.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{ asset('js/tabela.js') }}"></script>
 

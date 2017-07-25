@@ -20,3 +20,15 @@ div.dataTables_wrapper div.dataTables_length {
     color: #fff;
     
 }
+
+.form-encolhido input{
+    height: 25px;
+}
+.form-encolhido .form-group{
+    line-height: 0.4;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: greenyellow;
+    background-color: #080808;
+}
