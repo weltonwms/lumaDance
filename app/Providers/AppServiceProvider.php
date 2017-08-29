@@ -5,8 +5,10 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Contrato;
 use App\Mensalidade;
+use App\Venda;
 use App\Observers\ContratoObserver;
 use App\Observers\MensalidadeObserver;
+use App\Observers\VendaObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         require base_path('resources/macros/macros.php');
         Contrato::observe(ContratoObserver::class);
         Mensalidade::observe(MensalidadeObserver::class);
+        Venda::observe(VendaObserver::class);
     }
 
     /**

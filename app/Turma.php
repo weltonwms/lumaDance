@@ -71,5 +71,14 @@ class Turma extends Model {
         endforeach;
         return $lista;
     }
+    
+    public function verifyAndDelete()
+    {
+        if($this->contratos->count()){
+            \Session::flash('mensagem', ['type' => 'danger', 'conteudo' => "Existe Contrato(s) relacionado(s) a esta Turma"]);
+            return false;
+        }
+        return $this->delete();
+    }
 
 }

@@ -74,3 +74,26 @@ $factory->define(App\Contrato::class, function (Faker\Generator $faker) {
         
     ];
 });
+
+$factory->define(App\Despesa::class, function (Faker\Generator $faker) {
+    
+
+    return [
+        'descricao' => $faker->creditCardType,
+        'valor' => $faker->randomFloat(2, 30,100),
+        'data' => $faker->date('d\/m\/Y'),
+        
+        
+    ];
+});
+
+$factory->define(App\Produto::class, function (Faker\Generator $faker) {
+    
+
+    return [
+        'descricao' => $faker->word,
+        'valor_compra' => $faker->randomFloat(2, 30,100),
+        'valor_venda' => $faker->randomFloat(2, 30,100),
+        'estoque' => $faker->numberBetween(10,1000),
+    ];
+});

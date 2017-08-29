@@ -6,12 +6,10 @@
 <label class="text-primary">Mensalidades</label>
 
 
-<?php 
-$st=Request::get('st');
-echo Form::select('status', ['0' => 'Abertas', '1' => 'Quitadas'], $st,
-        ['id'=>'select-status','data-url'=>route('contratos.edit',$contrato->id)]
-        );
-
+<?php
+$st = Request::get('st');
+echo Form::select('status', ['0' => 'Abertas', '1' => 'Quitadas'], $st, ['id' => 'select-status', 'data-url' => route('contratos.edit', $contrato->id)]
+);
 ?>
 
 
@@ -28,7 +26,7 @@ echo Form::select('status', ['0' => 'Abertas', '1' => 'Quitadas'], $st,
 
     </thead>
     <tbody>
-        <?php $key=0?>
+<?php $key = 0 ?>
         @foreach($contrato->getMensalidades($st) as $mensalidade)
         <tr>
             <td>{{$key+1}}</td>
@@ -51,7 +49,7 @@ echo Form::select('status', ['0' => 'Abertas', '1' => 'Quitadas'], $st,
                 data-id="{{$mensalidade->id}}"
                 >
 
-              @if($mensalidade->quitada!=1)
+                @if($mensalidade->quitada!=1)
                 @if($mensalidade->id)
                 <a href="#" data-toggle="tooltip" title="Editar"
                    class="btn_editar_mensalidade">
@@ -70,15 +68,15 @@ echo Form::select('status', ['0' => 'Abertas', '1' => 'Quitadas'], $st,
                    class="btn_quitar_mensalidade text-success">
                     <span class="glyphicon glyphicon-usd"></span>
                 </a>
-            @endif  
-               
+                @endif  
+
 
 
 
 
             </td>
         </tr>
-        <?php $key++?>
+<?php $key++ ?>
         @endforeach
 
     </tbody>
@@ -119,7 +117,7 @@ echo Form::select('status', ['0' => 'Abertas', '1' => 'Quitadas'], $st,
         var valor = this.parentNode.dataset.valor;
         var vencimento = this.parentNode.dataset.vencimento;
         //alert('id'+id+' valor '+valor+' vencimento'+vencimento);
-        
+
         $("#vencimento_previsto").html(vencimento);
         $("#quit_valor").html(valor);
         $("#id_mensalidade").val(id);
@@ -131,23 +129,70 @@ echo Form::select('status', ['0' => 'Abertas', '1' => 'Quitadas'], $st,
 
     $('#saveMensalidade').click(function (e) {
         e.preventDefault();
-        
+
         $('input[name=_method]').val(this.dataset.method);
         $('form').attr('action', this.dataset.action);
-        $('form').submit();
+        if (validaMensalidades()) {
+            $('form').submit();
+        }
     });
-    
-     $('#saveQuitar').click(function (e) {
+
+    $('#saveQuitar').click(function (e) {
         e.preventDefault();
-       
+
         $('input[name=_method]').val(this.dataset.method);
         $('form').attr('action', this.dataset.action);
-        $('form').submit();
+        if (validaQuitar()) {
+            $('form').submit();
+        }
     });
-    
-    $("#select-status").change(function(e){
-       window.location.href = this.dataset.url+'?st='+this.value;
+
+    $("#select-status").change(function (e) {
+        window.location.href = this.dataset.url + '?st=' + this.value;
     });
+
+    function validaMensalidades() {
+        removeMensagem('.mensagem-erro');
+        var valor = $('input[name=valor]').val().trim();
+        var vencimento = $('input[name=vencimento]').val().trim();
+        var retorno = true;
+        if (valor == '') {
+            enviaMensagem('input[name=valor]', 'O Campo Valor é obrigatório');
+            retorno = false;
+        } else {
+            removeMensagem('input[name=valor] + .mensagem-erro');
+        }
+        if (vencimento == '') {
+            enviaMensagem('input[name=vencimento]', 'O Campo Vencimento é obrigatório');
+            retorno = false;
+        } else {
+            removeMensagem('input[name=vencimento] + .mensagem-erro');
+        }
+        return retorno;
+    }
+
+    function validaQuitar() {
+        removeMensagem('.mensagem-erro');
+        var pago_em = $('input[name=pago_em]').val().trim();
+
+
+        var retorno = true;
+        if (pago_em == '') {
+            enviaMensagem('input[name=pago_em]', 'Data de pagamento é obrigatório');
+            retorno = false;
+        } else {
+            removeMensagem('input[name=pago_em] + .mensagem-erro');
+        }
+        return retorno;
+    }
+
+    function enviaMensagem(elemento, mensagem) {
+        var texto = '<span class="help-block mensagem-erro text-danger"><strong>' + mensagem + '</strong></span>';
+        $(elemento).after(texto);
+    }
+    function removeMensagem(elemento) {
+        $(elemento).remove();
+    }
 
 </script>
 

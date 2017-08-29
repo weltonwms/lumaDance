@@ -26,7 +26,7 @@
                             <label for="valor" class="col-sm-3 control-label">Valor</label>
                             <div class="col-sm-8 input-group">
                                  <span class="input-group-addon">R$</span>
-                                <input type="text" class="form-control money" name="valor" id="valor" placeholder="Valor">
+                                 <input type="text" class="form-control money" name="valor" id="valor" placeholder="Valor">
                             </div>
                         </div>
                        

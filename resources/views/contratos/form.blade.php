@@ -23,7 +23,7 @@
          $vl_entrada=[
             'field'=>'valor_entrada','label'=>'Valor Entrada','errors'=>$errors,
              'value'=>(isset($contrato))  ? $contrato->FormatedValorEntrada : '',
-             'atributos'=>['class'=>'money']
+             'atributos'=>['class'=>'money','data-toggle'=>"tooltip", 'title'=>"Utilize na Criação do Contrato para gerar mensalidade proporcional",]
          ];
          $dt_inicio=[
             'field'=>'inicio_contrato','label'=>'Inicio Contrato','errors'=>$errors,

@@ -32,6 +32,14 @@ class Aluno extends Model
         $this->attributes['nascimento'] = Carbon::createFromFormat('d/m/Y', $value);
     
     }
-     
+    
+    public function verifyAndDelete()
+    {
+        if ($this->contratos->count()) {
+            \Session::flash('mensagem', ['type' => 'danger', 'conteudo' => "Existe Contrato(s) relacionado(s) a este Aluno"]);
+            return false;
+        }
+        return $this->delete();
+    }
 
 }

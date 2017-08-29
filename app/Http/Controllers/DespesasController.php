@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Aluno;
-use App\Http\Requests\AlunoRequest;
+use App\Despesa;
+use App\Http\Requests\DespesaRequest;
 
-class AlunosController extends Controller {
-
+class DespesasController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +14,8 @@ class AlunosController extends Controller {
      */
     public function index()
     {
-        $alunos = Aluno::all();
-        return view("alunos.index", compact('alunos'));
+        $despesas=Despesa::all();
+       return view("despesas.index",compact('despesas'));
     }
 
     /**
@@ -25,7 +25,7 @@ class AlunosController extends Controller {
      */
     public function create()
     {
-        return view('alunos.create');
+        return view('despesas.create');
     }
 
     /**
@@ -34,68 +34,59 @@ class AlunosController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AlunoRequest $request)
+    public function store(DespesaRequest $request)
     {
-
-        Aluno::create($request->all());
+       Despesa::create($request->all() );
         \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionCreate')]);
-        return redirect('alunos');
+        return redirect('despesas');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Despesa  $despesa
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Despesa $despesa)
     {
-        return "show";
+       return "show";
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Despesa  $despesa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Aluno $aluno)
+    public function edit(Despesa $despesa)
     {
-
-        return view('alunos.edit', compact('aluno'));
+       return view('despesas.edit',compact('despesa'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Aluno  $aluno
+     * @param  \App\Despesa  $despesa
      * @return \Illuminate\Http\Response
      */
-    public function update(AlunoRequest $request, Aluno $aluno)
+    public function update(DespesaRequest $request, Despesa $despesa)
     {
-
-
-        $aluno->update($request->all());
+         $despesa->update($request->all());
         \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionUpdate')]);
-        return redirect()->route('alunos.index');
+        return redirect()->route('despesas.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Despesa  $despesa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Aluno $aluno)
+    public function destroy(Despesa $despesa)
     {
-
-        $retorno = $aluno->verifyAndDelete();
-        if ($retorno):
-            \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionDelete')]);
-        endif;
-
-        return redirect()->route('alunos.index');
+        $despesa->delete();
+        \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionDelete')]);
+        return redirect()->route('despesas.index');
     }
-
 }

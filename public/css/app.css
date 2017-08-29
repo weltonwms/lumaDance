@@ -2,9 +2,18 @@ body{
     /*background-image: url('../imgs/cinza.png');*/
     background-color: #f5f8fa;
 }
+
+.chosen-container{
+    width: 100% !important;
+}
+
 section.page-login{
     
     margin-top: 4%;
+}
+
+.navbar-brand.title-app{
+    color: pink;
 }
 
 div.dataTables_wrapper div.dataTables_filter {
@@ -28,7 +37,21 @@ div.dataTables_wrapper div.dataTables_length {
     line-height: 0.4;
 }
 
+.form-encolhido .help-block{
+    line-height: 1em;
+}
+
 .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
     color: greenyellow;
     background-color: #080808;
+}
+
+.mensagem-erro{
+    color: red;
+}
+
+.form-encolhido .form-group .error{
+    line-height:1.2em;
+    color: red;
+    font-size: 12px;
 }

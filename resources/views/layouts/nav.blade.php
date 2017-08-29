@@ -12,8 +12,8 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/home') }}">
-                {{ config('app.name', 'Laravel') }}
+            <a class="navbar-brand title-app" href="{{ url('/home') }}">
+                Arte Studio
             </a>
         </div>
 
@@ -40,7 +40,15 @@
                 <li class="{{Request::segment(1)=='contratos'?'active':null}}">
                     <a href="{{ route('contratos.index') }}">Contratos</a>
                 </li>
-
+                 <li class="{{Request::segment(1)=='despesas'?'active':null}}">
+                    <a href="{{ route('despesas.index') }}">Despesas</a>
+                </li>
+                 <li class="{{Request::segment(1)=='produtos'?'active':null}}">
+                    <a href="{{ route('produtos.index') }}">Produtos</a>
+                </li>
+                 <li class="{{Request::segment(1)=='vendas'?'active':null}}">
+                    <a href="{{ route('vendas.index') }}">Vendas</a>
+                </li>
                 
             </ul>
 

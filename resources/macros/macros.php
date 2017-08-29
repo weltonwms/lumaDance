@@ -49,12 +49,13 @@
     return $string;
 });
 
-\Html::macro('formGroupSelect', function ($field, $array,$label, $errors, $classes = '') {
+\Html::macro('formGroupSelect', function ($field, $array,$label, $errors, $classes = '',$datasets=[]) {
+    
     $class_erro = $errors->has($field) ? 'has-error' : '';
     $classes.= " form-control";
     $string = "<div class=\"form-group $class_erro \">";
     $string .= \Form::label($field, $label, ['class' => 'control-label']);
-    $string .= \Form::select($field, $array,null, ['class' => $classes,'data-placeholder'=>"-Selecione-",'placeholder' => '--Selecione--']);
+    $string .= \Form::select($field, $array,null, ['data-teste'=>'ju','class' => $classes,'data-placeholder'=>"-Selecione-",'placeholder' => '--Selecione--'],$datasets);
     if ($class_erro):
         $string .= "<span class='help-block'><strong>{$errors->first($field)}</strong></span>";
     endif;

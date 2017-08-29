@@ -46,12 +46,11 @@ class TeachersController extends Controller {
     {
 
         try {
-
             $teacher->delete();
             \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionDelete')]);
             return redirect()->route('teachers.index');
         } catch (\PDOException $e) {
-             \Session::flash('mensagem', ['type' => 'danger', 'conteudo' => trans('messages.error')]);
+            \Session::flash('mensagem', ['type' => 'danger', 'conteudo' => trans('messages.error')]);
             return redirect()->back();
         }
     }

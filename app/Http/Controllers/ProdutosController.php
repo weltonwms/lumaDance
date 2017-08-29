@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Aluno;
-use App\Http\Requests\AlunoRequest;
+use App\Produto;
+use App\Http\Requests\ProdutoRequest;
 
-class AlunosController extends Controller {
-
+class ProdutosController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +14,8 @@ class AlunosController extends Controller {
      */
     public function index()
     {
-        $alunos = Aluno::all();
-        return view("alunos.index", compact('alunos'));
+        $produtos= Produto::all();
+       return view("produtos.index",compact('produtos'));
     }
 
     /**
@@ -25,7 +25,7 @@ class AlunosController extends Controller {
      */
     public function create()
     {
-        return view('alunos.create');
+       return view('produtos.create');
     }
 
     /**
@@ -34,68 +34,61 @@ class AlunosController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AlunoRequest $request)
+    public function store(ProdutoRequest $request)
     {
-
-        Aluno::create($request->all());
+        Produto::create($request->all() );
         \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionCreate')]);
-        return redirect('alunos');
+        return redirect('produtos');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Produto $produto)
     {
-        return "show";
+         return "show";
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Aluno $aluno)
+    public function edit(Produto $produto)
     {
-
-        return view('alunos.edit', compact('aluno'));
+        return view('produtos.edit',compact('produto'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Aluno  $aluno
+     * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(AlunoRequest $request, Aluno $aluno)
+    public function update(ProdutoRequest $request, Produto $produto)
     {
-
-
-        $aluno->update($request->all());
+       $produto->update($request->all());
         \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionUpdate')]);
-        return redirect()->route('alunos.index');
+        return redirect()->route('produtos.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Aluno $aluno)
+    public function destroy(Produto $produto)
     {
-
-        $retorno = $aluno->verifyAndDelete();
-        if ($retorno):
-            \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionDelete')]);
-        endif;
-
-        return redirect()->route('alunos.index');
+       $retorno=$produto->verifyAndDelete();
+       if($retorno):
+        \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionDelete')]);
+       endif; 
+       return redirect()->route('produtos.index');
     }
-
 }

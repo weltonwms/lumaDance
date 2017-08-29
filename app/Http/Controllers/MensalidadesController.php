@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Mensalidade;
+use App\Http\Requests\MensalidadeRequest;
 use Illuminate\Http\Request;
 
 class MensalidadesController extends Controller {
 
-    public function store(Request $request)
+    public function store(MensalidadeRequest $request)
     {
 
         $mensalidade = new Mensalidade();
@@ -19,7 +20,7 @@ class MensalidadesController extends Controller {
         return redirect("contratos/" . $request->input('contrato_id') . '/edit')->withInput();
     }
 
-    public function update(Request $request, $id)
+    public function update(MensalidadeRequest $request, $id)
     {
         $mensalidade = Mensalidade::find($id);
         $mensalidade->valor = $request->valor;
@@ -28,7 +29,7 @@ class MensalidadesController extends Controller {
         return redirect("contratos/" . $request->input('contrato_id') . '/edit')->withInput();
     }
 
-    public function quitar(Request $request)
+    public function quitar(MensalidadeRequest $request)
     {
         
         $mensalidade = $request->id_mensalidade ? Mensalidade::find($request->id_mensalidade) : new Mensalidade;

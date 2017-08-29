@@ -7,51 +7,52 @@ $(document).ready(function () {
         post: true
 
     });
-    
+
     $(".confirm-desativar").confirm({
         text: "Deseja realmente desativar Este Contrato?",
         title: "  Exclusão de Item",
         confirmButton: " Desativar",
         cancelButton: " Cancelar",
         post: true,
-        method:'put',
-        classIconConfirmButton:' glyphicon glyphicon-remove-sign'
+        method: 'put',
+        classIconConfirmButton: ' glyphicon glyphicon-remove-sign'
 
     });
-    
+
     $(".confirm-payment").confirm({
         text: "Deseja realmente quitar pagamento com professor?",
         title: "  Pagamento de Professor",
         confirmButton: " Quitar",
         cancelButton: " Cancelar",
         post: true,
-        method:'put',
-        classIconConfirmButton:' glyphicon glyphicon-ok',
-        classConfirmButton:' btn btn-success'
+        method: 'put',
+        classIconConfirmButton: ' glyphicon glyphicon-ok',
+        classConfirmButton: ' btn btn-success'
 
     });
-    
+
     $(".confirm-desfazer-quitar").confirm({
         text: "Deseja realmente desfazer quitação?<br>O registro de Pagamento ao Professor dessa Mensalidade será excluída",
         title: "Desfazer Quitar",
         confirmButton: " Confirmar",
         cancelButton: " Cancelar",
         post: true,
-        method:'put',
-        classIconConfirmButton:' glyphicon glyphicon-ok',
-        classConfirmButton:' btn btn-success'
+        method: 'put',
+        classIconConfirmButton: ' glyphicon glyphicon-ok',
+        classConfirmButton: ' btn btn-success'
 
     });
 
 
-    $('.date').datepicker({
+     datepickerOptions = {
         format: "dd/mm/yyyy",
         language: "pt-BR",
         todayHighlight: true
-    });
-    
+    };
+    $('.dateBr').datepicker(datepickerOptions);
+
     $("body").tooltip({
-    selector: '[data-toggle="tooltip"]'
+        selector: '[data-toggle="tooltip"]'
     });
 
 
@@ -87,5 +88,12 @@ var SPMaskBehavior = function (val) {
                 field.mask(SPMaskBehavior.apply({}, arguments), options);
             }
         };
+
+function gatilhoModal() {
+    $('.meu_chosen').chosen().trigger("chosen:updated");
+    $('.dateBr').datepicker(datepickerOptions);
+    $('.money').mask('000.000.000.000.000,00', {reverse: true});
+
+}
 
 

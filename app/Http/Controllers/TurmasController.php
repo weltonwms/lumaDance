@@ -100,8 +100,10 @@ class TurmasController extends Controller {
      */
     public function destroy(Turma $turma)
     {
-        $turma->delete();
-        \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionDelete')]);
+        $retorno = $turma->verifyAndDelete();
+        if ($retorno):
+            \Session::flash('mensagem', ['type' => 'success', 'conteudo' => trans('messages.actionDelete')]);
+        endif;
         return redirect()->route('turmas.index');
     }
 
