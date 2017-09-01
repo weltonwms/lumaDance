@@ -50,6 +50,19 @@
                     <a href="{{ route('vendas.index') }}">Vendas</a>
                 </li>
                 
+                 <li class="dropdown {{Request::segment(1)=='relatorio'?'active':null}}">
+                    <a href="#" class="dropdown-toggle" 
+                       data-toggle="dropdown" role="button"  aria-expanded="false">
+                        Relatório <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('relatorio.venda') }}">de Venda</a></li>
+                        <li><a href="{{ route('relatorio.contrato') }}">de Contrato</a></li>
+                        <li><a href="{{ route('relatorio.mensalidade')}}">de Mensalidade</a></li>
+                        <li><a href="{{ route('relatorio.geral')}}">Geral</a></li>
+                    </ul>
+                </li>
+                
             </ul>
 
             <!-- Right Side Of Navbar -->

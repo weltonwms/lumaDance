@@ -40,6 +40,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('despesas', 'DespesasController');
     Route::resource('produtos', 'ProdutosController');
     Route::resource('vendas', 'VendasController');
+    Route::match(['get', 'post'],"relatorio/venda",'RelatoriosController@venda')->name('relatorio.venda');
+    Route::match(['get', 'post'],"relatorio/contrato",'RelatoriosController@contrato')->name('relatorio.contrato');
+    Route::match(['get', 'post'],"relatorio/mensalidade",'RelatoriosController@mensalidade')->name('relatorio.mensalidade');
+    Route::match(['get', 'post'],"relatorio/geral",'RelatoriosController@geral')->name('relatorio.geral');
 });
 
 

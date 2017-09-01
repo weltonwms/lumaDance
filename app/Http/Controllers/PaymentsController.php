@@ -17,8 +17,7 @@ class PaymentsController extends Controller
      public function quitar(Request $request, TeacherPayment $teacherPayment)
     {
          if($teacherPayment->pago==0):
-             $teacherPayment->pago=1;
-             $teacherPayment->save();
+             $teacherPayment->quitar();
              \Session::flash('mensagem', ['type' => 'success', 'conteudo' => 'Pagamento Registrado ao Professor']);
          else:
              \Session::flash('mensagem', ['type' => 'danger', 'conteudo' => trans('messages.error')]);

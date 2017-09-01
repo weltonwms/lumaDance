@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class TeacherPayment extends Model {
 
@@ -17,6 +18,13 @@ class TeacherPayment extends Model {
     public function teacher()
     {
         return $this->belongsTo("App\Teacher");
+    }
+    
+    public function quitar()
+    {
+        $this->pago=1;
+        $this->pago_em=  Carbon::now();
+        $this->save();
     }
 
     public static function getQuery($request)

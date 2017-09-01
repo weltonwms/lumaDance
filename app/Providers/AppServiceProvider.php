@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         
         require base_path('resources/macros/macros.php');
+        require base_path('resources/macros/componentes.php');
         Contrato::observe(ContratoObserver::class);
         Mensalidade::observe(MensalidadeObserver::class);
         Venda::observe(VendaObserver::class);
