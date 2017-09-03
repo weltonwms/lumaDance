@@ -15,20 +15,36 @@ class RelatorioGeral extends Model
     public $vendas=[];
     public $pagamentos=[];
     public $despesas=[];
+    public $totalMensalidades;
+    public $totalLucroVendas; //representa total lucro de vendas
+    public $totalPagamentos;
+    public $totalDespesas;
+    public $totalCredito;
+    public $totalDebito;
+    public $totalLucro;
     
     public function getRelatorio()
     {
        
-        $this->mensalidades();
-        $this->vendas();
-        $this->pagamentos();
-        $this->despesas();
+        $this->setMensalidades();
+        $this->setVendas();
+        $this->setPagamentos();
+        $this->setDespesas();
+        
+        $this->setTotalMensalidades();
+        $this->setTotalLucroVendas();
+        $this->setTotalPagamentos();
+        $this->setTotalDespesas();
+        
+        $this->setTotalCredito();
+        $this->setTotalDebito();
+        $this->setTotalLucro();
         //dd($this->pagamentos);
         return $this;
     }
     
     
-     private function mensalidades()
+     private function setMensalidades()
     {
         $this->mensalidades=  Mensalidade::query();
         $this->mensalidades->where('quitada',1);
@@ -46,7 +62,7 @@ class RelatorioGeral extends Model
     
    
     
-     private function vendas()
+     private function setVendas()
     {
         $this->vendas=Venda::query();
          if (request('periodo_inicial')):
@@ -63,7 +79,7 @@ class RelatorioGeral extends Model
     
     
     
-    private function pagamentos()
+    private function setPagamentos()
     {
         $this->pagamentos= TeacherPayment::query();
         $this->pagamentos->where('pago',1);
@@ -79,7 +95,7 @@ class RelatorioGeral extends Model
          $this->pagamentos=$this->pagamentos->orderBy('pago_em', 'desc')->get();
     }
     
-     private function despesas()
+     private function setDespesas()
     {
         $this->despesas=Despesa::query();
          if (request('periodo_inicial')):
@@ -92,6 +108,63 @@ class RelatorioGeral extends Model
             $this->despesas->where('data', '<=', $dt);
         endif;
          $this->despesas=$this->despesas->orderBy('data', 'desc')->get();
+    }
+    
+    private function setTotalMensalidades()
+    {
+        $total=0;
+        foreach ($this->mensalidades as $mensalidade):
+            $total+=$mensalidade->valor;
+        endforeach;
+        $this->totalMensalidades=$total;
+    }
+    
+    private function setTotalLucroVendas()
+    {
+        $total=0;
+        foreach ($this->vendas as $venda):
+            $total+=$venda->lucro;
+        endforeach;
+        $this->totalLucroVendas=$total;
+    }
+    
+    private function setTotalPagamentos()
+    {
+        $total=0;
+        foreach ($this->pagamentos as $pagamento):
+            $total+=$pagamento->valor;
+        endforeach;
+        $this->totalPagamentos=$total;
+    }
+    
+    private function setTotalDespesas()
+    {
+        $total=0;
+        foreach ($this->despesas as $despesa):
+            $total+=$despesa->valor;
+        endforeach;
+        $this->totalDespesas=$total;
+    }
+    
+    private function setTotalCredito()
+    {
+        $this->totalCredito=  $this->totalMensalidades+$this->totalLucroVendas;
+        
+    }
+    
+    private function setTotalDebito()
+    {
+        $this->totalDebito=  $this->totalPagamentos+$this->totalDespesas;
+    }
+    
+    private function setTotalLucro()
+    {
+        $this->totalLucro=  $this->totalCredito-$this->totalDebito;
+    }
+    
+    public function moneytoBr($attr)
+    {
+        return number_format($this->$attr, 2, ',', '.');
     }
     
 }

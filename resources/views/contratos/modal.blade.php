@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label for="vencimento" class="col-sm-3 control-label">Vencimento</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control date" name="vencimento" id="vencimento" placeholder="Vencimento">
+                                <input type="text" class="form-control dateBr" name="vencimento" id="vencimento" placeholder="Vencimento">
                             </div>
                         </div>
                         <div class="form-group">

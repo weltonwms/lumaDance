@@ -28,7 +28,7 @@
          $dt_inicio=[
             'field'=>'inicio_contrato','label'=>'Inicio Contrato','errors'=>$errors,
              'value'=>(isset($contrato))  ? $contrato->inicio_contrato : \Carbon\Carbon::now()->format('d\/m\/Y'),
-             'atributos'=>['class'=>'date']
+             'atributos'=>['class'=>'dateBr']
          ];
          ?>
     

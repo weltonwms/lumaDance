@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\RelatorioVenda;
 use App\RelatorioContrato;
 use App\RelatorioGeral;
+use App\RelatorioMensalidade;
 
 class RelatoriosController extends Controller {
 
@@ -33,9 +34,17 @@ class RelatoriosController extends Controller {
         return view("relatorios.contrato", $dados);
     }
 
-    public function mensalidade()
+    public function mensalidade(Request $request)
     {
-        return "mensalidade";
+        $relatorio = new RelatorioMensalidade();
+        $result = $request->isMethod('post') ? $relatorio->getRelatorio() : $relatorio;
+        $dados = [
+            'alunos' => \App\Aluno::pluck('nome', 'id'),
+            'teachers' => \App\Teacher::pluck('nome', 'id'),
+            'turmas' => \App\Turma::pluck('descricao', 'id'),
+            'relatorio' => $result,
+        ];
+        return view("relatorios.mensalidade", $dados);
     }
 
     public function geral(Request $request)

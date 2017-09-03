@@ -59,8 +59,12 @@ class Mensalidade extends Model {
 
     public function getNomeStatusAttribute()
     {
+        if($this->quitada!=1 && $this->vencimentoCarbon->lt(Carbon::now())):
+            return "vencida";
+        endif;
         $status = $this->quitada ? 1 : 0;
         $nomes = ['Aberta', 'Quitada'];
+        
         return $nomes[$status];
     }
 
