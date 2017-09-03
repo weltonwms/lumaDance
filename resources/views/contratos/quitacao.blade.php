@@ -59,7 +59,7 @@
                         <div class="col-md-6">
                             <input  type="text"
                                    value="<?php echo date('d/m/Y');?>"
-                                   class="form-control date" name='pago_em' placeholder="Dt Pagamento">
+                                   class="form-control dateBr" name='pago_em' placeholder="Dt Pagamento">
                         </div>
                     </div>
                 
