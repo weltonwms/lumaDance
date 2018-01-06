@@ -9,6 +9,11 @@ use App\RelatorioGeral;
 use App\RelatorioMensalidade;
 
 class RelatoriosController extends Controller {
+    
+    public function __construct()
+    {
+        $this->middleware('adm')->except('mensalidade');
+    }
 
     public function venda(Request $request)
     {

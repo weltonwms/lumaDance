@@ -18,7 +18,7 @@
                     <th>Telefone</th>
                       <th>Nascimento</th>
                         <th>Endereço</th>
-                    <th>Acões</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
 

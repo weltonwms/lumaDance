@@ -3,13 +3,23 @@ body{
     background-color: #f5f8fa;
 }
 
+.container-interno{
+    background-color: #fff;
+    min-height: 600px;
+}
+
+.container.container-nav{
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .chosen-container{
     width: 100% !important;
 }
 
 section.page-login{
     
-    margin-top: 4%;
+    margin-top: 1%;
 }
 
 .navbar-brand.title-app{
@@ -54,4 +64,38 @@ div.dataTables_wrapper div.dataTables_length {
     line-height:1.2em;
     color: red;
     font-size: 12px;
+}
+
+.page-login .panel-default > .panel-heading {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+}
+
+.page-login .panel-default {
+    border-color: #000;
+}
+
+.page-login .panel {
+    border: 3px solid #000;
+}
+
+.page-login .btn-default {
+    background-color: #111;
+    color:#fff;
+    border-color: #fff;
+}
+
+.page-login .btn-default:hover {
+    background-color: #000;
+   color:#fff;
+    border: 1px solid #111111;
+}
+
+.header-logo{
+    background-color: #fff;
+}
+
+.header-logo img{
+    height: 60px;
 }

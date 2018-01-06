@@ -1,5 +1,5 @@
- 
-<nav class="navbar-inverse navbar-default navbar-static-top">
+ <div class='container container-nav' >
+<nav class="navbar-inverse navbar-default navbar-static-top ">
     <div class="container">
         <div class="navbar-header">
 
@@ -30,7 +30,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('teachers.index') }}">Gerenciar</a></li>
+                        @if (Auth::user()->isAdm)
                         <li><a href="{{ route('payments.index') }}">Pagamentos</a></li>
+                        @endif
                         
                     </ul>
                 </li>
@@ -56,12 +58,19 @@
                         Relatório <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
+                        @if (Auth::user()->isAdm)
                         <li><a href="{{ route('relatorio.venda') }}">de Venda</a></li>
                         <li><a href="{{ route('relatorio.contrato') }}">de Contrato</a></li>
-                        <li><a href="{{ route('relatorio.mensalidade')}}">de Mensalidade</a></li>
                         <li><a href="{{ route('relatorio.geral')}}">Geral</a></li>
+                        @endif
+                        <li><a href="{{ route('relatorio.mensalidade')}}">de Mensalidade</a></li>
                     </ul>
                 </li>
+                @if (Auth::user()->isAdm)
+                 <li class="{{Request::segment(1)=='users'?'active':null}}">
+                    <a href="{{ route('users.index') }}">Usuários</a>
+                </li>
+                @endif
                 
             </ul>
 
@@ -76,15 +85,18 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
-
+                    
                     <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ route('users.change')}}">Mudar Senha</a></li>
+                         <li role="separator" class="divider"></li>
+                         
                         <li>
-                            <a href="{{ route('logout') }}"
+                          <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
-
+                           
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
@@ -96,3 +108,4 @@
         </div>
     </div>
 </nav>
+ </div>

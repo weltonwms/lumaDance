@@ -3,6 +3,17 @@
 @section('content')
 <div class="container">
     <section class='page-login'>
+         <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="text-center">
+                    <img src="{{asset('imgs/logo.png')}}"/>
+                    <img src="{{asset('imgs/logo_nome.png')}}"/>
+                </div>
+                
+            </div>
+            
+        </div>
+        
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -50,8 +61,8 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="col-md-8 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="form-control btn btn-default">
                                         Login
                                     </button>
 

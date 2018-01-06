@@ -1,7 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
-@include('layouts.nav')
+@extends('layouts.app_interno')
+@section('content_interno')
 
 
     <div class="row">

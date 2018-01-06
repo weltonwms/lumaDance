@@ -1,11 +1,14 @@
 @extends('layouts.app')
+@section('header')
+    @include('layouts.header')
+@endsection
 @section('navbar')
     @include('layouts.nav') 
 @endsection
 
 
 @section('content')
-<div class="container" style='background-color: #f5f8fa'>
+<div class="container container-interno" >
     <hr>
     
     @if(Request::session()->has('mensagem'))
@@ -18,4 +21,5 @@
          
        @yield('content_interno')
 </div>
+
 @endsection

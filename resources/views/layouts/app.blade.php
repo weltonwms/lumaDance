@@ -36,7 +36,7 @@
     </head>
     <body>
         <div id="app">
-
+            @yield('header')
             @yield('navbar')
 
             @yield('content')

@@ -44,6 +44,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::match(['get', 'post'],"relatorio/contrato",'RelatoriosController@contrato')->name('relatorio.contrato');
     Route::match(['get', 'post'],"relatorio/mensalidade",'RelatoriosController@mensalidade')->name('relatorio.mensalidade');
     Route::match(['get', 'post'],"relatorio/geral",'RelatoriosController@geral')->name('relatorio.geral');
+    Route::get('users/changePassword','UsersController@showChangePassword')->name('users.change');
+    Route::post('users/changePassword','UsersController@updatePassword')->name('users.updatePass');
+    Route::resource('users', 'UsersController');
 });
 
 

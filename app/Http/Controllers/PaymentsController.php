@@ -7,6 +7,12 @@ use App\TeacherPayment;
 
 class PaymentsController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('adm');
+    }
+
     public function index(Request $request)
     {
         
