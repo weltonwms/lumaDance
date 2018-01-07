@@ -3,8 +3,8 @@
 
  <h4>Listagem de Despesas</h4>
  <hr>
-<div class="row">
-    <a class="btn btn-primary navbar-right" href="{{route('despesas.create')}}">Nova Despesa</a>
+<div class="row-fluid">
+    <a class="btn btn-primary pull-right" href="{{route('despesas.create')}}">Nova Despesa</a>
 </div>
    
     

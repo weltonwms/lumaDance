@@ -3,8 +3,8 @@
 
  <h4>Listagem de Produtos</h4>
  <hr>
-<div class="row">
-    <a class="btn btn-primary navbar-right" href="{{route('produtos.create')}}">Novo Produto</a>
+<div class="row-fluid">
+    <a class="btn btn-primary pull-right" href="{{route('produtos.create')}}">Novo Produto</a>
 </div>
    
     

@@ -3,8 +3,8 @@
 
 <h4>Listagem de Usuários</h4>
 <hr>
-<div class="row">
-    <a class="btn btn-primary navbar-right" href="{{route('users.create')}}">Novo Usuário</a>
+<div class="row-fluid">
+    <a class="btn btn-primary pull-right" href="{{route('users.create')}}">Novo Usuário</a>
 </div>
 
 

@@ -1,6 +1,7 @@
 body{
     /*background-image: url('../imgs/cinza.png');*/
-    background-color: #f5f8fa;
+/*    background-color: #f5f8fa;*/
+        background-color: #e8e8e8;
 }
 
 .container-interno{
@@ -94,6 +95,10 @@ div.dataTables_wrapper div.dataTables_length {
 
 .header-logo{
     background-color: #fff;
+    background-image: url('../imgs/wall.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.9;
 }
 
 .header-logo img{

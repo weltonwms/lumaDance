@@ -3,8 +3,8 @@
 
 <h4>Listagem de Vendas</h4>
 <hr>
-<div class="row">
-    <button class="btn btn-primary navbar-right" 
+<div class="row-fluid">
+    <button class="btn btn-primary pull-right" 
             data-href="{{route('vendas.create')}}"
             data-toggle="modal" data-target="#myModal">Nova Venda
     </button>

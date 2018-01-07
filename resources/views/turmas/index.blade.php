@@ -3,10 +3,10 @@
 
  <h4>Listagem de Turmas</h4>
  <hr>
-<div class="row">
+<div class="row-fluid">
    
-    <a class="btn btn-primary navbar-right" href="{{route('turmas.create')}}">Nova Turma</a>
-     <a class="btn btn-default navbar-right" href="{{route('turmas.grade')}}">Grade</a>
+    <a class="btn btn-primary pull-right" href="{{route('turmas.create')}}">Nova Turma</a>
+     <a class="btn btn-default pull-right" href="{{route('turmas.grade')}}">Grade</a>
 </div>
    
     
