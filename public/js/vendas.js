@@ -18,11 +18,12 @@ $('#myModal').on('show.bs.modal', function (event) {
 
 
 $('button[type=submit]').click(function () {
-     
-    var validator = $( "#form-venda" ).validate();
-    
-    if(validator.form()){
-    $('#form-venda').submit();
+
+    var validator = $("#form-venda").validate();
+
+    if (validator.form()) {
+        $('#form-venda').submit();
+        $('button[type=submit]').attr('disabled','disabled');
     }
 });
 
@@ -69,9 +70,9 @@ function logicaVenda() {
             escrever_valor(valor_unitario_venda, '#valor_venda');
         }
     }); //fim blur total
-    
-$.validator.setDefaults({ ignore: ":hidden:not(select)" }) ;
-$("#form-venda").validate({
+
+    $.validator.setDefaults({ignore: ":hidden:not(select)"});
+    $("#form-venda").validate({
         rules: {
             /*data: {required: true},*/
             valor_compra: {required: true},
@@ -81,7 +82,7 @@ $("#form-venda").validate({
 
         },
         messages: {
-           // data: {required: 'Digite a Data'},
+            // data: {required: 'Digite a Data'},
             valor_compra: {required: 'Digite o valor de Compra'},
             valor_venda: {required: 'Digite o valor da Venda'},
             produto_id: {required: "Selecione o Produto"},
@@ -89,8 +90,8 @@ $("#form-venda").validate({
 
         }
     });//fechamento do validate
-    
-   
+
+
 
 } //final logica venda
 

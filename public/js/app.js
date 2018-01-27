@@ -1,4 +1,29 @@
 $(document).ready(function () {
+    /*
+     * impedir duplo submit
+     */
+    $('input[type=submit]').click(function(e){
+        this.disabled=true;
+    });
+    
+    /**
+     * Efeito para checar e deschecar. útil para operações em lote
+     */
+    $(".check_all").click(function(){
+        var checar=$(this).is(":checked");
+        $(".checados").prop("checked", checar);
+        
+    });
+    
+    $(".checados").click(function(){
+        if(!$(this).is(":checked") && $('.check_all').is(":checked")){
+            $('.check_all').prop("checked", false);
+        }
+    });
+    /**
+     * Fim de operações em lote
+     */
+
     $(".confirm").confirm({
         text: "Deseja realmente excluir este Item?",
         title: "  Exclusão de Item",

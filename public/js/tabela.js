@@ -2,7 +2,7 @@
  * Datatable deverá ser carregada por ultimo, pois todos os eventos devem estar
  * no html primeiro para depois o datatable pega-los.
  */
-$(document).ready(function() {
+$(document).ready(function () {
     $('.tabela').dataTable({
         "dom": "<'row'<'col-sm-6'f><'col-sm-6'l>>" +
                 "<'row'<'col-sm-12'tr>>" +
@@ -10,7 +10,7 @@ $(document).ready(function() {
         "iDisplayLength": 10,
         "bStateSave": true,
         "columnDefs": [{
-                "targets": [-1],
+                "targets": ['nosort', -1],
                 "orderable": false
             }],
         "oLanguage": {
@@ -29,13 +29,13 @@ $(document).ready(function() {
         },
         drawCallback: draw
     }); //funções a chamar quando carrega table
-    
-    
-   
-        
+
+
+
+
 }); //fechamento do ready
 
-function draw(){
-   //funções a chamar quando carrega table
+function draw() {
+    //funções a chamar quando carrega table
 }
 

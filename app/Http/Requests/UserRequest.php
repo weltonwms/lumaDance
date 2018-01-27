@@ -23,13 +23,15 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $user=$this->route('user');
+        $id=$user?$user->id:null;
         $dados=[
             'name'=>"required",
-            'email'=>"required|email",
+            'email'=>"required|email|unique:users,email,$id",
             'perfil'=>"required",
             
         ];
-        if(!$this->route('user')):
+        if(!$user):
             $dados['password']="required";
         endif;
             

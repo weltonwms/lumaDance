@@ -19,12 +19,29 @@ class TeacherPayment extends Model {
     {
         return $this->belongsTo("App\Teacher");
     }
-    
-    public function quitar()
+
+    public static function quitar($dados)
     {
-        $this->pago=1;
-        $this->pago_em=  Carbon::now();
-        $this->save();
+        if ($dados):
+            $retorno = TeacherPayment::whereIn('id', $dados)
+                    ->update([
+                'pago' => 1,
+                'pago_em' => Carbon::now()
+            ]);
+            return $retorno;
+        endif;
+    }
+
+    public static function desquitar($dados)
+    {
+        if ($dados):
+            $retorno = TeacherPayment::whereIn('id', $dados)
+                    ->update([
+                'pago' => 0,
+                'pago_em' => NULL
+            ]);
+            return $retorno;
+        endif;
     }
 
     public static function getQuery($request)
@@ -36,17 +53,17 @@ class TeacherPayment extends Model {
         endif;
         return $res->get();
     }
-    
+
     public function getFormatedValorAttribute()
     {
-         return number_format($this->attributes['valor'], 2, ',', '.');
+        return number_format($this->attributes['valor'], 2, ',', '.');
     }
-    
+
     public function getFormatedPagoAttribute()
     {
-         $status=  $this->pago?1:0;
-         $nomes=["Não",'Sim'];
-         return $nomes[$status];
+        $status = $this->pago ? 1 : 0;
+        $nomes = ["Não", 'Sim'];
+        return $nomes[$status];
     }
 
 }

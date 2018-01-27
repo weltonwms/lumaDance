@@ -144,6 +144,7 @@ echo Form::select('status', ['0' => 'Abertas', '1' => 'Quitadas'], $st, ['id' =>
         $('form').attr('action', this.dataset.action);
         if (validaQuitar()) {
             $('form').submit();
+            $('#saveQuitar').attr('disabled','disabled');
         }
     });
 

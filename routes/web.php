@@ -25,7 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('alunos', 'AlunosController');
     Route::get('teachers/payments', 'PaymentsController@index')->name("payments.index");
-    Route::put('teachers/payments/{teacherPayment}', 'PaymentsController@quitar')->name("payments.quitar");
+    Route::put('teachers/payments/quitar', 'PaymentsController@quitar')->name("payments.quitar");
+    Route::put('teachers/payments/desquitar', 'PaymentsController@desquitar')->name("payments.desquitar");
     Route::resource('teachers', 'TeachersController');
     Route::get('turmas/grade', 'TurmasController@showGrade')->name("turmas.grade");
     Route::resource('turmas', 'TurmasController');

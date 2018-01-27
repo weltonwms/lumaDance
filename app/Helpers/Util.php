@@ -19,4 +19,13 @@ class Util {
         endif;
     }
 
+    public static function moneyBrToUsd($valor)
+    {
+
+        $valor1 = str_replace(".", "", $valor);
+        $valor2 = str_replace(",", ".", $valor1);
+
+        return number_format($valor2, 2,'.','');
+    }
+
 }

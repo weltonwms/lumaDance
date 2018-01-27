@@ -1,7 +1,17 @@
 @extends('layouts.app_interno')
-@section('content_interno')
 
-<h4>Pagamentos de Professores</h4>
+@section('title-toolbar','Pagamentos de Professores')
+@section('content-toolbar')
+<btn class=" btn btn-default">Total R$ {{number_format($payments->sum('valor'),2,',','.')}}</btn>
+@if(request('st')!='1')
+<button class="btn btn-success" id='btn-quitar'> <span class="glyphicon glyphicon-usd"></span> Quitar com Professor</button>
+@else
+<button class="btn btn-primary" id='btn-desquitar'> <span class="glyphicon glyphicon-arrow-left"></span> Desfazer Quitação </button>
+@endif
+@endsection
+
+@section('content_interno')
+@include('layouts.toobar')
 <hr>
 
 <form class="form-inline">
@@ -21,40 +31,36 @@
   </div>
   
 </form>
+<?php
+$rota=request('st')!='1'?'payments.quitar':'payments.desquitar';
+?>
 
+{!! Form::open(['route'=>$rota,'name'=>'payments-form', 'method'=>'PUT'])!!}
 <table class="tabela table table-striped" id="tabela">
     <thead>
         <tr>
-
+            <th class="nosort"><input class=" check_all" type="checkbox" name=""></th>
             <th>Valor</th>
             <th>Professor</th>
             <th>Contrato</th>
             <th>Dt Pgt Aluno</th>
              <th>Aluno</th>
             <th>Pago ao Professor</th>
-            <th>Acões</th>
+           
         </tr>
     </thead>
 
     <tbody>
         @foreach($payments as $payment)
         <tr>
+            <td><input type="checkbox" class="checados" name="quit[]" value="{{$payment->id}}"/></td>
             <td>{{$payment->formated_valor}}</td>
             <td>{{$payment->teacher->nome}}</td>
             <td>{{$payment->mensalidade->contrato->id}}</td>
             <td>{{$payment->mensalidade->formated_pago_em}}</td>
              <td>{{$payment->mensalidade->contrato->aluno->nome}}</td>
             <td>{{$payment->formated_pago}}</td>
-            <td>
-                @if($payment->pago!=1)
-                <a href="{{url("teachers/payments/$payment->id")}}" 
-                   data-info="{{$payment->teacher->nome}}"
-                   data-toggle="tooltip" title="Quitar Pagamento com Professor"
-                   class="confirm-payment text-success">
-                    <span class="glyphicon glyphicon-usd"></span>
-                </a>
-                @endif
-            </td>
+            
 
         </tr>
         @endforeach
@@ -62,13 +68,19 @@
 
     </tbody>
 </table>
-
-
-
-
+</form>
 
 @endsection
 
 
+
+
+@push('scripts')
+<script>
+    $('#btn-quitar, #btn-desquitar').click(function(){
+       $('form[name=payments-form]').submit();
+    });
+</script>
+@endpush
 
 

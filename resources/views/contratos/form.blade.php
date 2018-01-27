@@ -66,5 +66,7 @@
         e.preventDefault();
         $("input[name=fechar]").val(1);
         $('form').submit();
+        $('#btn-salvar-fechar').attr('disabled','disabled')
+        $('#btn-salvar-fechar').unbind();
     });
 </script>
