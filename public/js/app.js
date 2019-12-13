@@ -3,7 +3,10 @@ $(document).ready(function () {
      * impedir duplo submit
      */
     $('input[type=submit]').click(function(e){
-        this.disabled=true;
+        e.preventDefault();
+        $(this).parent('form').submit();
+        $(this).attr("disabled", true);
+        
     });
     
     /**
